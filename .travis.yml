@@ -10,5 +10,5 @@ matrix:
 script:
     - wget https://files.pythonhosted.org/packages/c5/f5/9a6150bc707bfb82e1d0533f83d3a7ef00ae3bdb2b8c8f85f5ac2d3b2bd9/obspy-1.1.0.zip
     - unzip -e obspy-1.1.0.zip
-    - sudo pip install cibuildwheel
+    - sudo pip install cibuildwheel numpy
     - cibuildwheel --output-dir wheelhouse obspy-1.1.0
