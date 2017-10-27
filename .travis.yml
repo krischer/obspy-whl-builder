@@ -3,7 +3,7 @@ language: generic
 env:
   global:
     # Install numpy in side the docker image.
-    - CIBW_BEFORE_BUILD: "{pip} install numpy"
+    - CIBW_BEFORE_BUILD="{pip} install numpy"
 
 matrix:
   include:
