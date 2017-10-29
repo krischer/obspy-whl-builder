@@ -2,10 +2,7 @@ language: generic
 
 env:
   global:
-    # Install numpy in side the docker image.
-    # subprocess32 is pulled in from matplotlib and only this version works on manylinux.
-    # Newer ones should as well.
-    - CIBW_BEFORE_BUILD="{pip} install numpy subprocess32==3.5.0rc1"
+    - CIBW_BEFORE_BUILD="{pip} install numpy matplotlib==1.5.3"
     # ObsPy does not work on Python 3.3.
     - CIBW_SKIP="cp33-*"
 
