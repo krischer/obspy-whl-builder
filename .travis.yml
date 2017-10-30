@@ -1,5 +1,10 @@
 language: generic
 
+env:
+  global:
+    - CIBW_BEFORE_BUILD="{pip} install numpy" CIBW_SKIP="cp33-*”
+    - CIBW_TEST_COMMAND="obspy-runtests -r --node=travis-wheel-builder --no-flake8"
+
 #services: [docker]
 os: osx
 
@@ -8,7 +13,7 @@ script:
     - unzip -e obspy-1.1.0.zip
     - sudo pip install cibuildwheel numpy
     # First build for OSX.
-    - CIBW_BEFORE_BUILD="{pip} install numpy" CIBW_SKIP="cp33-*” CIBW_TEST_COMMAND="obspy-runtests -r --node=travis-wheel-builder --no-flake8" cibuildwheel --platform macos --output-dir wheelhouse obspy-1.1.0
+    - cibuildwheel --platform macos --output-dir wheelhouse obspy-1.1.0
     # Then for Linux and Python 3.x. Only works for platforms that have matplotlib wheels (no 32bit).
     #- CIBW_BEFORE_BUILD="{pip} install numpy" CIBW_SKIP="cp27-* cp33-* *i686*" CIBW_TEST_COMMAND="obspy-runtests -r --node=travis-wheel-builder --no-flake8" cibuildwheel --platform linux --output-dir wheelhouse obspy-1.1.0
     # And finally for Linux and Python 2.7. Only works for platforms that have matplotlib wheels (no 32bit).
